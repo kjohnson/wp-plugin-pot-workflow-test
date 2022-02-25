@@ -27,6 +27,9 @@ jobs:
             npm ci
             npm run build
 
+      -   name: Generate pot file
+          run: wp i18n make-pot . languages/plugin.pot
+
       -   name: Generate plugin artifact
           run: |
             rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" "${GITHUB_WORKSPACE}/" ${{ inputs.plugin_slug }}/ --delete --delete-excluded
